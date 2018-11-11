@@ -1,0 +1,30 @@
+language: node_js
+
+node_js: node
+
+branches:
+  only:
+  - master
+
+before_install:
+- cd logistics
+
+install:
+- npm install
+
+script:
+- ng build --prod
+
+before_deploy:
+- cd ..
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local_dir: logistics/dist/
+  on:
+    branch: master
+
+cache: npm
