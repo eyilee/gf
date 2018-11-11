@@ -15,6 +15,9 @@ install:
 script:
 - ng build --prod
 
+before_deploy:
+- git add -f dist
+
 deploy:
   provider: pages
   skip-cleanup: true
