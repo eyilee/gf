@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './module/material.module';
 
+import { LogisticsService } from './service/logistics.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +18,9 @@ import { MaterialModule } from './module/material.module';
     MaterialModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    LogisticsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
