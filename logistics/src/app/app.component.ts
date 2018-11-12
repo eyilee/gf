@@ -8,12 +8,27 @@ import { LogisticsService } from './service/logistics.service';
 })
 export class AppComponent implements OnInit {
 
-  data: object;
+  eps: Array<object>;
+  logistics: Array<object>;
 
   constructor(private logisticsService: LogisticsService) { }
 
   ngOnInit(): void {
-    this.data = this.logisticsService.getData();
+    this.getLogisticsData();
   }
 
+  getLogisticsData(): void {
+    this.eps = this.logisticsService.getData();
+    this.logistics = this.extractLogisticsData(this.eps);
+  }
+
+  extractLogisticsData(eps: Array<object>): Array<object> {
+    const logistics = [];
+    for (const ep of eps) {
+      for (const logistic of ep['logistics']) {
+        logistics.push(logistic);
+      }
+    }
+    return logistics;
+  }
 }
