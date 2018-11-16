@@ -1,9 +1,8 @@
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { ControlTableComponent } from './component/control-table/control-table.component';
-
-import { Ep } from './interface/ep';
-import { Logistic } from './interface/logistic';
-import { LogisticsService } from './service/logistics.service';
+import { ControlTableComponent } from '../control-table/control-table.component';
+import { Ep } from 'src/app/interface/ep';
+import { Logistic } from 'src/app/interface/logistic';
+import { LogisticsService } from 'src/app/service/logistics.service';
 
 @Component({
   selector: 'app-root',

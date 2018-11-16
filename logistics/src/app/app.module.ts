@@ -1,26 +1,30 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
 import { MaterialModule } from './module/material.module';
 
-import { LogisticsService } from './service/logistics.service';
-import { TimePipe } from './pipe/time.pipe';
+import { AppComponent } from './component/app/app.component';
 import { ControlTableComponent } from './component/control-table/control-table.component';
+import { ControlPanelComponent } from './component/control-panel/control-panel.component';
+
+import { LogisticsService } from './service/logistics.service';
+
+import { TimePipe } from './pipe/time.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimePipe,
-    ControlTableComponent
+    ControlTableComponent,
+    ControlPanelComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   providers: [
     LogisticsService
