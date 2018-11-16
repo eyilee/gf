@@ -7,10 +7,12 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './module/material.module';
 
 import { LogisticsService } from './service/logistics.service';
+import { TimePipe } from './pipe/time.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,
