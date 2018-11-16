@@ -1,6 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { LogisticsService } from './service/logistics.service';
 
+import { Ep } from './interface/ep';
+import { Logistic } from './interface/logistic';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,10 +11,11 @@ import { LogisticsService } from './service/logistics.service';
 })
 export class AppComponent implements OnInit {
 
-  eps: Array<object>;
-  logistics: Array<object>;
-  selectedList: Array<boolean>;
-  selectedOption: Array<boolean>;
+  eps: Ep[];
+  logistics: Logistic[];
+
+  selectedList: boolean[];
+  selectedOption: boolean[];
 
   gridCols: number;
 
@@ -22,7 +26,7 @@ export class AppComponent implements OnInit {
     this.setGridCols();
   }
 
-  setGridCols() {
+  setGridCols(): void {
     this.gridCols = (window.innerWidth <= 400) ? 1 : 6;
   }
 
@@ -33,19 +37,21 @@ export class AppComponent implements OnInit {
     this.setListAndOption();
   }
 
-  setListAndOption() {
-    this.selectedList = new Array(this.eps.length).fill(true);
-    this.selectedOption = new Array(this.logistics.length).fill(true);
-  }
+  extractLogisticsData(eps: Ep[]): Logistic[] {
+    const logistics: Logistic[] = [];
 
-  extractLogisticsData(eps: Array<object>): Array<object> {
-    const logistics = [];
     for (const ep of eps) {
       for (const logistic of ep['logistics']) {
         logistics.push(logistic);
       }
     }
+
     return logistics;
+  }
+
+  setListAndOption(): void {
+    this.selectedList = new Array(this.eps.length).fill(true);
+    this.selectedOption = new Array(this.logistics.length).fill(true);
   }
 
   toggleList(list: number): void {
@@ -72,7 +78,7 @@ export class AppComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize(event): void {
     this.setGridCols();
   }
 }

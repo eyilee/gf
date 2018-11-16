@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Ep } from '../interface/ep';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -7,14 +9,14 @@ export class LogisticsService {
 
   constructor() { }
 
-  getData() {
+  getData(): Ep[] {
     return data;
   }
 }
 
-const data = [
+const data: Ep[] = [
   {
-    ep: 0,
+    id: 0,
     name: '第零戰役',
     logistics: [
       {
@@ -80,7 +82,7 @@ const data = [
     ]
   },
   {
-    ep: 1,
+    id: 1,
     name: '第一戰役',
     logistics: [
       {
@@ -146,7 +148,7 @@ const data = [
     ]
   },
   {
-    ep: 2,
+    id: 2,
     name: '第二戰役',
     logistics: [
       {
@@ -212,7 +214,7 @@ const data = [
     ]
   },
   {
-    ep: 3,
+    id: 3,
     name: '第三戰役',
     logistics: [
       {
@@ -278,7 +280,7 @@ const data = [
     ]
   },
   {
-    ep: 4,
+    id: 4,
     name: '第四戰役',
     logistics: [
       {
@@ -344,7 +346,7 @@ const data = [
     ]
   },
   {
-    ep: 5,
+    id: 5,
     name: '第五戰役',
     logistics: [
       {
@@ -410,7 +412,7 @@ const data = [
     ]
   },
   {
-    ep: 6,
+    id: 6,
     name: '第六戰役',
     logistics: [
       {
@@ -476,7 +478,7 @@ const data = [
     ]
   },
   {
-    ep: 7,
+    id: 7,
     name: '第七戰役',
     logistics: [
       {
@@ -542,7 +544,7 @@ const data = [
     ]
   },
   {
-    ep: 8,
+    id: 8,
     name: '第八戰役',
     logistics: [
       {
@@ -608,7 +610,7 @@ const data = [
     ]
   },
   {
-    ep: 9,
+    id: 9,
     name: '第九戰役',
     logistics: [
       {
@@ -674,7 +676,7 @@ const data = [
     ]
   },
   {
-    ep: 10,
+    id: 10,
     name: '第十戰役',
     logistics: [
       {
@@ -740,7 +742,7 @@ const data = [
     ]
   },
   {
-    ep: 11,
+    id: 11,
     name: '第十一戰役',
     logistics: [
       {
