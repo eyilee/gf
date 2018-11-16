@@ -332,7 +332,7 @@ MIT
 
 @angular/material/list
 
-@angular/material/checkbox
+@angular/material/grid-list
 
 zone.js
 MIT
