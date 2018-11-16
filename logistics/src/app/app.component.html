@@ -1,22 +1,3 @@
 <main class="container">
-  <mat-grid-list [cols]="gridCols" rowHeight="200" gutterSize="12">
-    <mat-grid-tile *ngFor="let ep of eps; let i = index">
-      <mat-selection-list dense>
-        <mat-list-option [selected]="selectedList[i]" (click)="toggleList(i)">
-          {{ep.name}}
-        </mat-list-option>
-        <mat-list-option *ngFor="let logistic of ep.logistics; let j = index" [selected]="selectedOption[i * 4 + j]"
-          (click)="toggleOption(i, j)">
-          {{logistic.code}}
-          {{logistic.time | time }}
-        </mat-list-option>
-      </mat-selection-list>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <app-control-table [eps]="eps" [logistics]="logistics"></app-control-table>
 </main>
-
-<!-- <img *ngIf="logistic.IOP_Contract" src="./assets/images/IOP_Contract.png" alt="人形製造契約" width="32" height="32">
-<img *ngIf="logistic.EQUIP_Contract" src="./assets/images/EQUIP_Contract.png" alt="裝備製造契約" width="32" height="32">
-<img *ngIf="logistic.Quick_Develop" src="./assets/images/Quick_Develop.png" alt="快速製造契約" width="32" height="32">
-<img *ngIf="logistic.Quick_Reinforce" src="./assets/images/Quick_Reinforce.png" alt="快速修復契約" width="32" height="32">
-<img *ngIf="logistic.Furniture_Coin" src="./assets/images/Furniture_Coin.png" alt="採購幣" width="32" height="32"> -->

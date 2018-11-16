@@ -8,11 +8,13 @@ import { MaterialModule } from './module/material.module';
 
 import { LogisticsService } from './service/logistics.service';
 import { TimePipe } from './pipe/time.pipe';
+import { ControlTableComponent } from './component/control-table/control-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimePipe
+    TimePipe,
+    ControlTableComponent
   ],
   imports: [
     BrowserModule,
