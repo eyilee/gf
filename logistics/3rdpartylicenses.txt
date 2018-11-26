@@ -336,6 +336,10 @@ MIT
 
 @angular/material/form-field
 
+@angular/material/button
+
+@angular/material/sort
+
 zone.js
 MIT
 The MIT License
