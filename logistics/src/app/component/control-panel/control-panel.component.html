@@ -53,3 +53,17 @@
   <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/Furniture_Coin.png" width="24" height="24" />
   <input matInput [(ngModel)]="options.Furniture_Coin" type="number" />
 </mat-form-field>
+
+<h3>間隔時間</h3>
+
+<mat-form-field>
+  <mat-label>小時</mat-label>
+  <input matInput [(ngModel)]="options.time.hr" type="number" min="0" />
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>分鐘</mat-label>
+  <input matInput [(ngModel)]="options.time.min" type="number" max="59" min="0" />
+</mat-form-field>
+
+<button mat-flat-button color="primary" (click)="calculate()">計算</button>

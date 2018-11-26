@@ -1,0 +1,21 @@
+<table matSort (matSortChange)="sortData($event)">
+  <tr>
+    <th mat-sort-header="id" disabled="true">id</th>
+    <th mat-sort-header="code" disabled="true">code</th>
+    <th mat-sort-header="name" disabled="true">name</th>
+    <th mat-sort-header="Mp">人力</th>
+    <th mat-sort-header="Ammo">彈藥</th>
+    <th mat-sort-header="Mre">口糧</th>
+    <th mat-sort-header="Part">零件</th>
+  </tr>
+
+  <tr *ngFor="let data of sortedData">
+    <td>{{ data.id }}</td>
+    <td>{{ data.code }}</td>
+    <td>{{ data.name }}</td>
+    <td>{{ data.Mp }}</td>
+    <td>{{ data.Ammo }}</td>
+    <td>{{ data.Mre }}</td>
+    <td>{{ data.Part }}</td>
+  </tr>
+</table>

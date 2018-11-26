@@ -1,7 +1,7 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
-import { Ep } from 'src/app/interface/ep';
-import { Logistic } from 'src/app/interface/logistic';
+import { Ep } from 'src/app/interface/ep.interface';
+import { Logistic } from 'src/app/interface/logistic.interface';
 import { LogisticsService } from 'src/app/service/logistics.service';
 
 @Component({
@@ -11,18 +11,18 @@ import { LogisticsService } from 'src/app/service/logistics.service';
 })
 export class ControlTableComponent implements OnInit {
 
-  @Input()
-  eps: Ep[];
-
-  @Input()
-  logistics: Logistic[];
+  readonly eps: Ep[];
+  readonly logistics: Logistic[];
 
   selectedList: boolean[];
   selectedOption: boolean[];
 
   gridCols: number;
 
-  constructor() { }
+  constructor(private logisticService: LogisticsService) {
+    this.eps = logisticService.eps;
+    this.logistics = logisticService.logistics;
+  }
 
   ngOnInit(): void {
     this.setGridCols();

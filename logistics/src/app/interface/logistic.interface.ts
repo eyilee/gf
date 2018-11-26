@@ -2,10 +2,10 @@ export interface Logistic {
   id: number;
   code: string;
   name: string;
-  human: number;
-  ammunition: number;
-  ration: number;
-  component: number;
+  Mp: number;
+  Ammo: number;
+  Mre: number;
+  Part: number;
   IOP_Contract: number;
   EQUIP_Contract: number;
   Quick_Develop: number;

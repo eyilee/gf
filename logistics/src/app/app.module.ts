@@ -8,6 +8,7 @@ import { MaterialModule } from './module/material.module';
 import { AppComponent } from './component/app/app.component';
 import { ControlTableComponent } from './component/control-table/control-table.component';
 import { ControlPanelComponent } from './component/control-panel/control-panel.component';
+import { DetailTableComponent } from './component/detail-table/detail-table.component';
 
 import { LogisticsService } from './service/logistics.service';
 
@@ -18,7 +19,8 @@ import { TimePipe } from './pipe/time.pipe';
     AppComponent,
     ControlTableComponent,
     ControlPanelComponent,
-    TimePipe
+    TimePipe,
+    DetailTableComponent
   ],
   imports: [
     BrowserModule,

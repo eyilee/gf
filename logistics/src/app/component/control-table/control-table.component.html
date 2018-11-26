@@ -1,4 +1,5 @@
-<mat-grid-list [cols]="gridCols" rowHeight="200" gutterSize="12">
+<h3>後勤計算機</h3>
+<mat-grid-list [cols]="gridCols" rowHeight="200">
   <mat-grid-tile *ngFor="let ep of eps; let i = index">
     <mat-selection-list dense>
       <mat-list-option [selected]="selectedList[i]" (click)="toggleList(i)">
