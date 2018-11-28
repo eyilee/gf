@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 
 import { Ep } from '../interface/ep.interface';
 import { Logistic } from '../interface/logistic.interface';
@@ -11,10 +12,11 @@ import { LogisticData } from '../const/logistic.const';
 })
 export class LogisticsService {
 
-  private options: any;
-
   readonly eps: Ep[];
   readonly logistics: Logistic[];
+
+  private options: any;
+  private currentResult: Subject<any> = new Subject<any>();
 
   constructor() {
     this.options = {
@@ -30,7 +32,8 @@ export class LogisticsService {
       time: {
         hr: 0,
         min: 0
-      }
+      },
+      team: 4
     };
 
     this.eps = EpData;
@@ -39,7 +42,32 @@ export class LogisticsService {
 
   calculate(options: any): any {
     const option = { ...this.options, ...options };
-    console.log(option);
+
+    const result = [];
+
+    this.logistics.forEach(element => {
+      const score =
+        element.Mp * option.Mp
+        + element.Ammo * option.Ammo
+        + element.Mre * option.Mre
+        + element.Part * option.Part
+        + element.IOP_Contract * option.IOP_Contract
+        + element.EQUIP_Contract * option.EQUIP_Contract
+        + element.Quick_Develop * option.Quick_Develop
+        + element.Quick_Reinforce * option.Quick_Reinforce
+        + element.Furniture_Coin * option.Furniture_Coin;
+
+      result.push({
+        ...element,
+        score: score
+      });
+    });
+
+    this.currentResult.next(result);
+  }
+
+  get theCurrentResult(): Observable<any> {
+    return this.currentResult.asObservable();
   }
 
 }

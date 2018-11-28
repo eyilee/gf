@@ -24,7 +24,8 @@ export class ControlPanelComponent {
       time: {
         hr: 0,
         min: 0
-      }
+      },
+      team: 4
     };
   }
 

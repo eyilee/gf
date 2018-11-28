@@ -8,6 +8,7 @@ import {
   MatGridListModule,
   MatInputModule,
   MatListModule,
+  MatSelectModule,
   MatSortModule,
   MatToolbarModule
 } from '@angular/material';
@@ -23,6 +24,7 @@ import {
     MatGridListModule,
     MatInputModule,
     MatListModule,
+    MatSelectModule,
     MatSortModule,
     MatToolbarModule
   ],
@@ -35,6 +37,7 @@ import {
     MatGridListModule,
     MatInputModule,
     MatListModule,
+    MatSelectModule,
     MatSortModule,
     MatToolbarModule
   ]

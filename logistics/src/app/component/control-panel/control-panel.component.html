@@ -66,4 +66,14 @@
   <input matInput [(ngModel)]="options.time.min" type="number" max="59" min="0" />
 </mat-form-field>
 
+<mat-form-field>
+  <mat-label>梯隊數</mat-label>
+  <mat-select [(value)]="options.team">
+    <mat-option [value]="1">1</mat-option>
+    <mat-option [value]="2">2</mat-option>
+    <mat-option [value]="3">3</mat-option>
+    <mat-option [value]="4" selected="selected">4</mat-option>
+  </mat-select>
+</mat-form-field>
+
 <button mat-flat-button color="primary" (click)="calculate()">計算</button>
