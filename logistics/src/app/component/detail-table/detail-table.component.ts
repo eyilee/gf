@@ -29,7 +29,7 @@ export class DetailTableComponent {
         case 'Ammo': return compare(a.Ammo, b.Ammo, isAsc);
         case 'Mre': return compare(a.Mre, b.Mre, isAsc);
         case 'Part': return compare(a.Part, b.Part, isAsc);
-        case 'score': return compare(a.score, b.score, isAsc);
+        case 'weight': return compare(a.weight, b.weight, isAsc);
         default: return 0;
       }
     });

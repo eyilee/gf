@@ -57,9 +57,13 @@ export class LogisticsService {
         + element.Quick_Reinforce * option.Quick_Reinforce
         + element.Furniture_Coin * option.Furniture_Coin;
 
+      const time = option.time.hr * 3600 + option.time.min * 60 || 3600;
+
+      const cycle = time > element.time ? 1 : Math.ceil(element.time / time);
+
       result.push({
         ...element,
-        score: score
+        weight: score / cycle,
       });
     });
 

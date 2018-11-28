@@ -1,4 +1,4 @@
-<table matSort [matSortDisableClear]="true" (matSortChange)="sortData($event)">
+<table matSort [matSortDisableClear]="true" [matSortStart]="'desc'" (matSortChange)="sortData($event)">
   <tr>
     <th mat-sort-header="id" disabled="true">id</th>
     <th mat-sort-header="code" disabled="true">code</th>
@@ -7,7 +7,7 @@
     <th mat-sort-header="Ammo">彈藥</th>
     <th mat-sort-header="Mre">口糧</th>
     <th mat-sort-header="Part">零件</th>
-    <th mat-sort-header="score">加權總分</th>
+    <th mat-sort-header="weight">加權總分</th>
   </tr>
 
   <tr *ngFor="let data of currentResult">
@@ -18,6 +18,6 @@
     <td>{{ data.Ammo }}</td>
     <td>{{ data.Mre }}</td>
     <td>{{ data.Part }}</td>
-    <td>{{ data.score }}</td>
+    <td>{{ data.weight }}</td>
   </tr>
 </table>

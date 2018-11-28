@@ -67,6 +67,16 @@ export class ControlTableComponent implements OnInit {
   }
 
   setGridCols(): void {
-    this.gridCols = (window.innerWidth <= 400) ? 1 : 6;
+    if (window.innerWidth <= 576) {
+      this.gridCols = 1;
+    } else if (window.innerWidth <= 768) {
+      this.gridCols = 3;
+    } else if (window.innerWidth <= 992) {
+      this.gridCols = 4;
+    } else if (window.innerWidth <= 1200) {
+      this.gridCols = 6;
+    } else {
+      this.gridCols = 8;
+    }
   }
 }
