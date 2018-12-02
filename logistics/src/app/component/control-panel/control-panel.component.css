@@ -1,9 +1,30 @@
-.mat-grid-list {
-  height: 400px;
+.inline-list {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #E8EAF6;
 }
 
-.mat-grid-tile {
-  background-color: #E8EAF6;
+.inline-tile {
+  flex: 0 1 160px;
+  margin: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logistic {
+  display: flex;
+  justify-content: space-around;
+}
+
+.logistic .logistic-code {
+  font-weight: bold;
+}
+
+.logistic .logistic-time {
+  color: #999;
+}
+
+.mat-list-text {
+  flex-direction: row;
 }
 
 .mat-form-field {
