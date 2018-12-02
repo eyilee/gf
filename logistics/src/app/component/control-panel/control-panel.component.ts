@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LogisticsService } from 'src/app/service/logistics.service';
 import { Ep } from 'src/app/interface/ep.interface';
 import { Logistic } from 'src/app/interface/logistic.interface';
@@ -18,8 +18,6 @@ export class ControlPanelComponent implements OnInit {
   selectedList: boolean[];
   selectedOption: boolean[];
 
-  gridCols: number;
-
   constructor(private logisticsService: LogisticsService) {
     this.options = this.logisticsService.options;
 
@@ -28,8 +26,6 @@ export class ControlPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.setGridCols();
     this.setListAndOption();
   }
 
@@ -63,25 +59,6 @@ export class ControlPanelComponent implements OnInit {
       this.selectedOption[list * 4 + 1] &&
       this.selectedOption[list * 4 + 2] &&
       this.selectedOption[list * 4 + 3];
-  }
-
-  @HostListener('window:resize')
-  onWindowResize(): void {
-    this.setGridCols();
-  }
-
-  setGridCols(): void {
-    if (window.innerWidth <= 576) {
-      this.gridCols = 1;
-    } else if (window.innerWidth <= 768) {
-      this.gridCols = 3;
-    } else if (window.innerWidth <= 992) {
-      this.gridCols = 4;
-    } else if (window.innerWidth <= 1200) {
-      this.gridCols = 6;
-    } else {
-      this.gridCols = 8;
-    }
   }
 
   calculate(): void {
