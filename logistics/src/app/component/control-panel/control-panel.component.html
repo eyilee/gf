@@ -1,3 +1,20 @@
+<h3>後勤計算機</h3>
+
+<mat-grid-list [cols]="gridCols" rowHeight="200">
+  <mat-grid-tile *ngFor="let ep of eps; let i = index">
+    <mat-selection-list dense>
+      <mat-list-option [selected]="selectedList[i]" (click)="toggleList(i)">
+        {{ ep.name }}
+      </mat-list-option>
+      <mat-list-option *ngFor="let logisticId of ep.logistics; let j = index" [selected]="selectedOption[i * 4 + j]"
+        (click)="toggleOption(i, j)">
+        {{ getLogisticById(logisticId).code }}
+        {{ getLogisticById(logisticId).time | time }}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-grid-tile>
+</mat-grid-list>
+
 <h3>資源權重</h3>
 
 <mat-form-field>

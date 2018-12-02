@@ -12,10 +12,11 @@ import { LogisticData } from '../const/logistic.const';
 })
 export class LogisticsService {
 
+  readonly options: any;
+
   readonly eps: Ep[];
   readonly logistics: Logistic[];
 
-  private options: any;
   private currentResult: Subject<any> = new Subject<any>();
 
   constructor() {
@@ -40,7 +41,7 @@ export class LogisticsService {
     this.logistics = LogisticData;
   }
 
-  calculate(options: any): any {
+  calculate(options: any, selected: Array<boolean>): any {
     const option = { ...this.options, ...options };
 
     const result = [];
@@ -57,9 +58,9 @@ export class LogisticsService {
         + element.Quick_Reinforce * option.Quick_Reinforce
         + element.Furniture_Coin * option.Furniture_Coin;
 
-      const time = option.time.hr * 3600 + option.time.min * 60 || 3600;
+      const time = option.time.hr * 3600 + option.time.min * 60;
 
-      const cycle = time > element.time ? 1 : Math.ceil(element.time / time);
+      const cycle = (time === 0) ? element.time / 3600 : Math.ceil(element.time / time);
 
       result.push({
         ...element,

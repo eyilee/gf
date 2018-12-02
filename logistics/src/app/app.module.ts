@@ -6,7 +6,6 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from './module/material.module';
 
 import { AppComponent } from './component/app/app.component';
-import { ControlTableComponent } from './component/control-table/control-table.component';
 import { ControlPanelComponent } from './component/control-panel/control-panel.component';
 import { DetailTableComponent } from './component/detail-table/detail-table.component';
 
@@ -17,7 +16,6 @@ import { TimePipe } from './pipe/time.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    ControlTableComponent,
     ControlPanelComponent,
     TimePipe,
     DetailTableComponent
