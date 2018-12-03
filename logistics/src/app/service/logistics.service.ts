@@ -35,7 +35,9 @@ export class LogisticsService {
   calculate(options: Options, selected: Array<boolean>): any {
     const weightedResult = this.getWeightedResult(options, selected);
 
-    this.currentResult.next(weightedResult);
+    const result = this.getBestCombination(options, weightedResult);
+
+    this.currentResult.next(result);
   }
 
   getWeightedResult(options: Options, selected: Array<boolean>): any {
@@ -72,6 +74,95 @@ export class LogisticsService {
     });
 
     return result;
+  }
+
+  getBestCombination(options: Options, weighted: any[]): any {
+    let combinations = options.combination;
+
+    for (let i = 0; i < options.team; i++) {
+      combinations *= i + 1;
+    }
+
+    const least = Math.pow(combinations, 1 / options.team) + options.team - 1;
+
+    const reduced = weighted.slice(0, least);
+
+    const allCombinations = [];
+    this.getAllCombination(allCombinations, reduced, options.team);
+
+    allCombinations.sort((a, b) => {
+      return b.weight - a.weight;
+    });
+
+    return this.getCombinationDetail(allCombinations);
+  }
+
+  getAllCombination(allCombinations: any[], reduced: any[], team: number, index: number = 0, currentCombination: any[] = []): any {
+    if (team === 0) {
+      const ids = [];
+      let weight = 0;
+
+      for (let i = 0; i < currentCombination.length; i++) {
+        ids.push(reduced[currentCombination[i]].id);
+        weight += reduced[currentCombination[i]].weight;
+      }
+
+      allCombinations.push({
+        combination: ids.sort(),
+        weight: weight
+      });
+    }
+
+    for (let i = index; i < reduced.length; i++) {
+      currentCombination.push(i);
+      this.getAllCombination(allCombinations, reduced, team - 1, i + 1, currentCombination);
+      currentCombination.pop();
+    }
+  }
+
+  getCombinationDetail(combinations) {
+    const result = [];
+
+    combinations.forEach(value => {
+      const currentCombination = {
+        codes: [],
+        Mp: 0,
+        Ammo: 0,
+        Mre: 0,
+        Part: 0,
+        IOP_Contract: 0,
+        EQUIP_Contract: 0,
+        Quick_Develop: 0,
+        Quick_Reinforce: 0,
+        Furniture_Coin: 0,
+        weight: 0
+      };
+
+      value.combination.forEach(id => {
+        const logistic = this.getLogisticById(id);
+
+        currentCombination.codes.push(logistic.code);
+        currentCombination.Mp += logistic.Mp;
+        currentCombination.Ammo += logistic.Ammo;
+        currentCombination.Mre += logistic.Mre;
+        currentCombination.Part += logistic.Part;
+        currentCombination.IOP_Contract += logistic.IOP_Contract;
+        currentCombination.EQUIP_Contract += logistic.EQUIP_Contract;
+        currentCombination.Quick_Develop += logistic.Quick_Develop;
+        currentCombination.Quick_Reinforce += logistic.Quick_Reinforce;
+        currentCombination.Furniture_Coin += logistic.Furniture_Coin;
+      });
+
+      currentCombination.weight = value.weight;
+
+      result.push(currentCombination);
+    });
+
+    return result;
+  }
+
+  getLogisticById(id: number): Logistic {
+    return this.logistics.find(x => x.id === id);
   }
 
 }

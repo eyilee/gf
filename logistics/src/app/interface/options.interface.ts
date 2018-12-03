@@ -13,4 +13,5 @@ export interface Options {
     min: number;
   };
   team: number;
+  combination: number;
 }

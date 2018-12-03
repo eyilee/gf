@@ -14,5 +14,6 @@ export const OptionsData: Options = {
     hr: 0,
     min: 0
   },
-  team: 4
+  team: 4,
+  combination: 20
 };

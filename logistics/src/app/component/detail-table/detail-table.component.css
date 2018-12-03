@@ -1,0 +1,3 @@
+.result-codes + .result-codes::before {
+  content: ', ';
+}
