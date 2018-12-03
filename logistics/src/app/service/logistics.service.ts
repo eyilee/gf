@@ -61,9 +61,11 @@ export class LogisticsService {
 
       const cycle = (time === 0) ? value.time / 3600 : Math.ceil(value.time / time);
 
+      const exceed = (time > 0) && (value.time > time) ? 0 : 1;
+
       result.push({
         id: value.id,
-        weight: score / cycle,
+        weight: score / cycle * exceed,
       });
     });
 
