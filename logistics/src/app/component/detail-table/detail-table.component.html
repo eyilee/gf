@@ -1,10 +1,41 @@
-<table matSort [matSortDisableClear]="true" [matSortStart]="'desc'" (matSortChange)="sort($event)">
+<table class="detail-table" matSort [matSortDisableClear]="true" [matSortStart]="'desc'" (matSortChange)="sort($event)">
   <tr>
     <th disabled="true">後勤組合</th>
-    <th mat-sort-header="mp">人力</th>
-    <th mat-sort-header="ammo">彈藥</th>
-    <th mat-sort-header="mre">口糧</th>
-    <th mat-sort-header="part">零件</th>
+    <th mat-sort-header="mp">
+      <!-- 人力 -->
+      <img src="./assets/images/Mp.png" width="24" height="24" />
+    </th>
+    <th mat-sort-header="ammo">
+      <!-- 彈藥 -->
+      <img src="./assets/images/Ammo.png" width="24" height="24" />
+    </th>
+    <th mat-sort-header="mre">
+      <!-- 口糧 -->
+      <img src="./assets/images/Mre.png" width="24" height="24" />
+    </th>
+    <th mat-sort-header="part">
+      <!-- 零件 -->
+      <img src="./assets/images/Part.png" width="24" height="24" />
+    </th>
+    <th mat-sort-header="iop_contract">
+      <!-- 人形製造契約 -->
+      <img src="./assets/images/IOP_Contract.png" width="24" height="24" />
+    </th>
+    <th mat-sort-header="equip_contract">
+      <!-- 裝備製造契約 -->
+      <img src="./assets/images/EQUIP_Contract.png" width="24" height="24" />
+    </th>
+    <th mat-sort-header="quick_develop">
+      <!-- 快速製造契約 -->
+      <img src="./assets/images/Quick_Develop.png" width="24" height="24" /></th>
+    <th mat-sort-header="quick_reinforce">
+      <!-- 快速修復契約 -->
+      <img src="./assets/images/Quick_Reinforce.png" width="24" height="24" />
+    </th>
+    <th mat-sort-header="furniture_coin">
+      <!-- 採購幣 -->
+      <img src="./assets/images/Furniture_Coin.png" width="24" height="24" />
+    </th>
     <th mat-sort-header="weight">加權總分</th>
   </tr>
 
@@ -16,6 +47,11 @@
     <td>{{ result.ammo }}</td>
     <td>{{ result.mre }}</td>
     <td>{{ result.part }}</td>
+    <td>{{ result.iop_contract }}</td>
+    <td>{{ result.equip_contract }}</td>
+    <td>{{ result.quick_develop }}</td>
+    <td>{{ result.quick_reinforce }}</td>
+    <td>{{ result.furniture_coin }}</td>
     <td>{{ result.weight }}</td>
   </tr>
 </table>

@@ -1,3 +1,19 @@
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.detail-table th,
+.detail-table td {
+  text-align: left;
+  line-height: 2;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.detail-table tr:nth-child(even) {
+  background-color: #ccc;
+}
+
 .result-codes + .result-codes::before {
   content: ', ';
 }

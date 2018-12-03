@@ -95,4 +95,14 @@
   </mat-select>
 </mat-form-field>
 
+<mat-form-field>
+  <mat-label>組合數</mat-label>
+  <mat-select [(value)]="options.combination_limit">
+    <mat-option [value]="10" selected="selected">10</mat-option>
+    <mat-option [value]="20">20</mat-option>
+    <mat-option [value]="30">30</mat-option>
+    <mat-option [value]="40">40</mat-option>
+  </mat-select>
+</mat-form-field>
+
 <button mat-flat-button color="primary" (click)="calculate()">計算</button>

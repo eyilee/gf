@@ -33,6 +33,16 @@ export class DetailTableComponent {
           return compare(a.mre, b.mre, isAsc);
         case 'part':
           return compare(a.part, b.part, isAsc);
+        case 'iop_contract':
+          return compare(a.iop_contract, b.iop_contract, isAsc);
+        case 'equip_contract':
+          return compare(a.equip_contract, b.equip_contract, isAsc);
+        case 'quick_develop':
+          return compare(a.quick_develop, b.quick_develop, isAsc);
+        case 'quick_reinforce':
+          return compare(a.quick_reinforce, b.quick_reinforce, isAsc);
+        case 'furniture_coin':
+          return compare(a.furniture_coin, b.furniture_coin, isAsc);
         case 'weight':
           return compare(a.weight, b.weight, isAsc);
         default:

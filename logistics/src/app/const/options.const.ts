@@ -15,5 +15,5 @@ export const OptionsData: Options = {
     min: 0
   },
   team_limit: 4,
-  combination_limit: 20
+  combination_limit: 10
 };
