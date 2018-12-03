@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 
+import { Options } from '../interface/options.interface';
 import { Ep } from '../interface/ep.interface';
 import { Logistic } from '../interface/logistic.interface';
 
+import { OptionsData } from '../const/options.const';
 import { EpData } from '../const/ep.const';
 import { LogisticData } from '../const/logistic.const';
 
@@ -12,7 +14,7 @@ import { LogisticData } from '../const/logistic.const';
 })
 export class LogisticsService {
 
-  readonly options: any;
+  readonly options: Options;
 
   readonly eps: Ep[];
   readonly logistics: Logistic[];
@@ -20,59 +22,56 @@ export class LogisticsService {
   private currentResult: Subject<any> = new Subject<any>();
 
   constructor() {
-    this.options = {
-      Mp: 0,
-      Ammo: 0,
-      Mre: 0,
-      Part: 0,
-      IOP_Contract: 0,
-      EQUIP_Contract: 0,
-      Quick_Develop: 0,
-      Quick_Reinforce: 0,
-      Furniture_Coin: 0,
-      time: {
-        hr: 0,
-        min: 0
-      },
-      team: 4
-    };
+    this.options = OptionsData;
 
     this.eps = EpData;
     this.logistics = LogisticData;
   }
 
-  calculate(options: any, selected: Array<boolean>): any {
-    const option = { ...this.options, ...options };
+  get theCurrentResult(): Observable<any> {
+    return this.currentResult.asObservable();
+  }
 
+  calculate(options: Options, selected: Array<boolean>): any {
+    const weightedResult = this.getWeightedResult(options, selected);
+
+    this.currentResult.next(weightedResult);
+  }
+
+  getWeightedResult(options: Options, selected: Array<boolean>): any {
     const result = [];
 
-    this.logistics.forEach(element => {
+    this.logistics.forEach((value, index) => {
+      if (!selected[index]) {
+        return;
+      }
+
       const score =
-        element.Mp * option.Mp
-        + element.Ammo * option.Ammo
-        + element.Mre * option.Mre
-        + element.Part * option.Part
-        + element.IOP_Contract * option.IOP_Contract
-        + element.EQUIP_Contract * option.EQUIP_Contract
-        + element.Quick_Develop * option.Quick_Develop
-        + element.Quick_Reinforce * option.Quick_Reinforce
-        + element.Furniture_Coin * option.Furniture_Coin;
+        value.Mp * options.Mp
+        + value.Ammo * options.Ammo
+        + value.Mre * options.Mre
+        + value.Part * options.Part
+        + value.IOP_Contract * options.IOP_Contract
+        + value.EQUIP_Contract * options.EQUIP_Contract
+        + value.Quick_Develop * options.Quick_Develop
+        + value.Quick_Reinforce * options.Quick_Reinforce
+        + value.Furniture_Coin * options.Furniture_Coin;
 
-      const time = option.time.hr * 3600 + option.time.min * 60;
+      const time = options.time.hr * 3600 + options.time.min * 60;
 
-      const cycle = (time === 0) ? element.time / 3600 : Math.ceil(element.time / time);
+      const cycle = (time === 0) ? value.time / 3600 : Math.ceil(value.time / time);
 
       result.push({
-        ...element,
+        id: value.id,
         weight: score / cycle,
       });
     });
 
-    this.currentResult.next(result);
-  }
+    result.sort((a, b) => {
+      return b.weight - a.weight;
+    });
 
-  get theCurrentResult(): Observable<any> {
-    return this.currentResult.asObservable();
+    return result;
   }
 
 }
