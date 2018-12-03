@@ -1,21 +1,21 @@
-<table matSort [matSortDisableClear]="true" [matSortStart]="'desc'" (matSortChange)="sortData($event)">
+<table matSort [matSortDisableClear]="true" [matSortStart]="'desc'" (matSortChange)="sort($event)">
   <tr>
     <th disabled="true">後勤組合</th>
-    <th mat-sort-header="Mp">人力</th>
-    <th mat-sort-header="Ammo">彈藥</th>
-    <th mat-sort-header="Mre">口糧</th>
-    <th mat-sort-header="Part">零件</th>
+    <th mat-sort-header="mp">人力</th>
+    <th mat-sort-header="ammo">彈藥</th>
+    <th mat-sort-header="mre">口糧</th>
+    <th mat-sort-header="part">零件</th>
     <th mat-sort-header="weight">加權總分</th>
   </tr>
 
-  <tr *ngFor="let result of currentResult">
+  <tr *ngFor="let result of results">
     <td>
       <span class="result-codes" *ngFor="let code of result.codes">{{ code }}</span>
     </td>
-    <td>{{ result.Mp }}</td>
-    <td>{{ result.Ammo }}</td>
-    <td>{{ result.Mre }}</td>
-    <td>{{ result.Part }}</td>
+    <td>{{ result.mp }}</td>
+    <td>{{ result.ammo }}</td>
+    <td>{{ result.mre }}</td>
+    <td>{{ result.part }}</td>
     <td>{{ result.weight }}</td>
   </tr>
 </table>

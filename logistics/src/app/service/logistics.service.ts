@@ -14,50 +14,48 @@ import { LogisticData } from '../const/logistic.const';
 })
 export class LogisticsService {
 
-  readonly options: Options;
-
   readonly eps: Ep[];
   readonly logistics: Logistic[];
+  readonly options: Options;
 
-  private currentResult: Subject<any> = new Subject<any>();
+  private results: Subject<any> = new Subject<any>();
 
   constructor() {
-    this.options = OptionsData;
-
     this.eps = EpData;
     this.logistics = LogisticData;
+    this.options = OptionsData;
   }
 
-  get theCurrentResult(): Observable<any> {
-    return this.currentResult.asObservable();
+  getResults(): Observable<any> {
+    return this.results.asObservable();
   }
 
-  calculate(options: Options, selected: Array<boolean>): any {
-    const weightedResult = this.getWeightedResult(options, selected);
+  calculate(options: Options, selectedLogistics: boolean[]): void {
+    const weightedLogistics = this.getWeightedLogistics(options, selectedLogistics);
 
-    const result = this.getBestCombination(options, weightedResult);
+    const bestCombinations = this.getBestCombinations(options, weightedLogistics);
 
-    this.currentResult.next(result);
+    this.results.next(bestCombinations);
   }
 
-  getWeightedResult(options: Options, selected: Array<boolean>): any {
+  getWeightedLogistics(options: Options, selectedLogistics: boolean[]): any[] {
     const result = [];
 
     this.logistics.forEach((value, index) => {
-      if (!selected[index]) {
+      if (!selectedLogistics[index]) {
         return;
       }
 
       const score =
-        value.Mp * options.Mp
-        + value.Ammo * options.Ammo
-        + value.Mre * options.Mre
-        + value.Part * options.Part
-        + value.IOP_Contract * options.IOP_Contract
-        + value.EQUIP_Contract * options.EQUIP_Contract
-        + value.Quick_Develop * options.Quick_Develop
-        + value.Quick_Reinforce * options.Quick_Reinforce
-        + value.Furniture_Coin * options.Furniture_Coin;
+        value.mp * options.mp
+        + value.ammo * options.ammo
+        + value.mre * options.mre
+        + value.part * options.part
+        + value.iop_contract * options.iop_contract
+        + value.equip_contract * options.equip_contract
+        + value.quick_develop * options.quick_develop
+        + value.quick_reinforce * options.quick_reinforce
+        + value.furniture_coin * options.furniture_coin;
 
       const time = options.time.hr * 3600 + options.time.min * 60;
 
@@ -76,81 +74,81 @@ export class LogisticsService {
     return result;
   }
 
-  getBestCombination(options: Options, weighted: any[]): any {
-    let combinations = options.combination;
+  getBestCombinations(options: Options, weightedLogistics: any[]): any[] {
+    let combination_limit = options.combination_limit;
 
-    for (let i = 0; i < options.team; i++) {
-      combinations *= i + 1;
+    for (let i = 0; i < options.team_limit; i++) {
+      combination_limit *= i + 1;
     }
 
-    const least = Math.pow(combinations, 1 / options.team) + options.team - 1;
+    const numberToKeep = Math.pow(combination_limit, 1 / options.team_limit) + options.team_limit - 1;
 
-    const reduced = weighted.slice(0, least);
+    const reducedLogistics = weightedLogistics.slice(0, numberToKeep);
 
-    const allCombinations = [];
-    this.getAllCombination(allCombinations, reduced, options.team);
+    const combinations = [];
+    this.getAllCombinations(combinations, reducedLogistics, options.team_limit);
 
-    allCombinations.sort((a, b) => {
+    combinations.sort((a, b) => {
       return b.weight - a.weight;
     });
 
-    return this.getCombinationDetail(allCombinations);
+    return this.getDetailOfCombinations(combinations).slice(0, options.combination_limit);
   }
 
-  getAllCombination(allCombinations: any[], reduced: any[], team: number, index: number = 0, currentCombination: any[] = []): any {
+  getAllCombinations(combinations: any[], logistics: any[], team: number, currentCombination: any[] = [], index: number = 0): void {
     if (team === 0) {
       const ids = [];
       let weight = 0;
 
       for (let i = 0; i < currentCombination.length; i++) {
-        ids.push(reduced[currentCombination[i]].id);
-        weight += reduced[currentCombination[i]].weight;
+        ids.push(logistics[currentCombination[i]].id);
+        weight += logistics[currentCombination[i]].weight;
       }
 
-      allCombinations.push({
+      combinations.push({
         combination: ids.sort(),
         weight: weight
       });
     }
 
-    for (let i = index; i < reduced.length; i++) {
+    for (let i = index; i < logistics.length; i++) {
       currentCombination.push(i);
-      this.getAllCombination(allCombinations, reduced, team - 1, i + 1, currentCombination);
+      this.getAllCombinations(combinations, logistics, team - 1, currentCombination, i + 1);
       currentCombination.pop();
     }
   }
 
-  getCombinationDetail(combinations) {
+  getDetailOfCombinations(combinations: any[]): any[] {
     const result = [];
 
     combinations.forEach(value => {
       const currentCombination = {
         codes: [],
-        Mp: 0,
-        Ammo: 0,
-        Mre: 0,
-        Part: 0,
-        IOP_Contract: 0,
-        EQUIP_Contract: 0,
-        Quick_Develop: 0,
-        Quick_Reinforce: 0,
-        Furniture_Coin: 0,
+        mp: 0,
+        ammo: 0,
+        mre: 0,
+        part: 0,
+        iop_contract: 0,
+        equip_contract: 0,
+        quick_develop: 0,
+        quick_reinforce: 0,
+        furniture_coin: 0,
         weight: 0
       };
 
       value.combination.forEach(id => {
-        const logistic = this.getLogisticById(id);
+        const logistic = this.logistics.find(x => x.id === id);
 
         currentCombination.codes.push(logistic.code);
-        currentCombination.Mp += logistic.Mp;
-        currentCombination.Ammo += logistic.Ammo;
-        currentCombination.Mre += logistic.Mre;
-        currentCombination.Part += logistic.Part;
-        currentCombination.IOP_Contract += logistic.IOP_Contract;
-        currentCombination.EQUIP_Contract += logistic.EQUIP_Contract;
-        currentCombination.Quick_Develop += logistic.Quick_Develop;
-        currentCombination.Quick_Reinforce += logistic.Quick_Reinforce;
-        currentCombination.Furniture_Coin += logistic.Furniture_Coin;
+        currentCombination.mp += logistic.mp;
+        currentCombination.ammo += logistic.ammo;
+        currentCombination.mre += logistic.mre;
+        currentCombination.part += logistic.part;
+        currentCombination.iop_contract += logistic.iop_contract;
+        currentCombination.equip_contract += logistic.equip_contract;
+        currentCombination.quick_develop += logistic.quick_develop;
+        currentCombination.quick_reinforce += logistic.quick_reinforce;
+        currentCombination.furniture_coin += logistic.furniture_coin;
       });
 
       currentCombination.weight = value.weight;
@@ -159,10 +157,6 @@ export class LogisticsService {
     });
 
     return result;
-  }
-
-  getLogisticById(id: number): Logistic {
-    return this.logistics.find(x => x.id === id);
   }
 
 }

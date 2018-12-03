@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LogisticsService } from 'src/app/service/logistics.service';
 import { Ep } from 'src/app/interface/ep.interface';
 import { Logistic } from 'src/app/interface/logistic.interface';
+import { Options } from 'src/app/interface/options.interface';
 
 @Component({
   selector: 'app-control-panel',
@@ -10,26 +11,20 @@ import { Logistic } from 'src/app/interface/logistic.interface';
 })
 export class ControlPanelComponent implements OnInit {
 
-  options: any;
-
   readonly eps: Ep[];
   readonly logistics: Logistic[];
 
+  options: Options;
   selectedList: boolean[];
   selectedOption: boolean[];
 
   constructor(private logisticsService: LogisticsService) {
-    this.options = this.logisticsService.options;
-
-    this.eps = this.logisticsService.eps;
-    this.logistics = this.logisticsService.logistics;
+    this.eps = logisticsService.eps;
+    this.logistics = logisticsService.logistics;
+    this.options = logisticsService.options;
   }
 
   ngOnInit(): void {
-    this.setListAndOption();
-  }
-
-  setListAndOption(): void {
     this.selectedList = new Array(this.eps.length).fill(true);
     this.selectedOption = new Array(this.logistics.length).fill(true);
   }
