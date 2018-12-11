@@ -30,3 +30,47 @@
 .mat-form-field {
   margin-right: 12px;
 }
+
+.label-img {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+.step-btn {
+  position: absolute;
+  top: 50%;
+  margin-top: -9px;
+  width: 18px;
+  height: 18px;
+  font: bold 18px/1 monospace;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.step-btn:hover {
+  color: #3f51b5;
+}
+
+.step-btn-increase {
+  right: 0;
+}
+
+.step-btn-decrease {
+  right: 20px;
+}
+
+.input-number::-webkit-inner-spin-button,
+.input-number::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.input-number {
+  -moz-appearance: textfield;
+}
+
+.panel-btn {
+  margin-right: 8px;
+}

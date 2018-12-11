@@ -21,7 +21,7 @@ export class ControlPanelComponent implements OnInit {
   constructor(private logisticsService: LogisticsService) {
     this.eps = logisticsService.eps;
     this.logistics = logisticsService.logistics;
-    this.options = logisticsService.options;
+    this.options = JSON.parse(JSON.stringify(logisticsService.options));
   }
 
   ngOnInit(): void {
@@ -56,7 +56,21 @@ export class ControlPanelComponent implements OnInit {
       this.selectedOption[list * 4 + 3];
   }
 
+  // TODO: refactor
+  stepUp(prop: string): void {
+    this.options[prop] = Math.floor(this.options[prop]) + 1;
+  }
+
+  // TODO: refactor
+  stepDown(prop: string): void {
+    this.options[prop] = Math.floor(this.options[prop]) - 1;
+  }
+
   calculate(): void {
     this.logisticsService.calculate(this.options, this.selectedOption);
+  }
+
+  reset(): void {
+    this.options = JSON.parse(JSON.stringify(this.logisticsService.options));
   }
 }

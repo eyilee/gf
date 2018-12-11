@@ -21,56 +21,74 @@
 
 <mat-form-field>
   <mat-label>人力</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/Mp.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.mp" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/Mp.png" />
+  <input matInput [(ngModel)]="options.mp" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('mp')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('mp')">↓</span>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>彈藥</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/Ammo.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.ammo" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/Ammo.png" />
+  <input matInput [(ngModel)]="options.ammo" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('ammo')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('ammo')">↓</span>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>口糧</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/Mre.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.mre" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/Mre.png" />
+  <input matInput [(ngModel)]="options.mre" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('mre')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('mre')">↓</span>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>零件</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/Part.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.part" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/Part.png" />
+  <input matInput [(ngModel)]="options.part" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('part')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('part')">↓</span>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>人形製造契約</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/IOP_Contract.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.iop_contract" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/IOP_Contract.png" />
+  <input matInput [(ngModel)]="options.iop_contract" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('iop_contract')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('iop_contract')">↓</span>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>裝備製造契約</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/EQUIP_Contract.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.equip_contract" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/EQUIP_Contract.png" />
+  <input matInput [(ngModel)]="options.equip_contract" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('equip_contract')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('equip_contract')">↓</span>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>快速製造契約</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/Quick_Develop.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.quick_develop" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/Quick_Develop.png" />
+  <input matInput [(ngModel)]="options.quick_develop" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('quick_develop')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('quick_develop')">↓</span>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>快速修復契約</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/Quick_Reinforce.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.quick_reinforce" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/Quick_Reinforce.png" />
+  <input matInput [(ngModel)]="options.quick_reinforce" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('quick_reinforce')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('quick_reinforce')">↓</span>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>採購幣</mat-label>
-  <img matPrefix [ngStyle]="{'margin-right': '12px'}" src="./assets/images/Furniture_Coin.png" width="24" height="24" />
-  <input matInput [(ngModel)]="options.furniture_coin" type="number" />
+  <img matPrefix class="label-img" src="./assets/images/Furniture_Coin.png" />
+  <input matInput [(ngModel)]="options.furniture_coin" class="input-number" type="number" />
+  <span class="step-btn step-btn-increase" (click)="stepUp('furniture_coin')">↑</span>
+  <span class="step-btn step-btn-decrease" (click)="stepDown('furniture_coin')">↓</span>
 </mat-form-field>
 
 <h3>間隔時間</h3>
@@ -105,4 +123,5 @@
   </mat-select>
 </mat-form-field>
 
-<button mat-flat-button color="primary" (click)="calculate()">計算</button>
+<button mat-flat-button color="primary" class="panel-btn" (click)="calculate()">計算</button>
+<button mat-flat-button color="accent" class="panel-btn" (click)="reset()">重置</button>
