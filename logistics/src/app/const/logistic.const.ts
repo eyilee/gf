@@ -239,7 +239,7 @@ export const LogisticData: Logistic[] = [
     quick_develop: 1,
     quick_reinforce: 1,
     furniture_coin: 0,
-    time: 5400
+    time: 18000
   },
   {
     id: 17,
